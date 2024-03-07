@@ -10,10 +10,6 @@
     button.style.color = "#ffffff"
     button.id = "vieanhng-download"
     let linkViewDoc
-    if(document.location.href.match('entities/publication')?.index > -1){
-        document.body.appendChild(button);
-        linkViewDoc = document.querySelector('.link-view-doc')?.getAttribute('href');
-    }
 
     document.body.addEventListener('mousemove',function () {
         if(!Boolean(document.querySelector('#vieanhng-download')) && document.location.href.match('entities/publication')?.index > -1){
@@ -22,6 +18,10 @@
         }
 
         if(Boolean(document.querySelector('#vieanhng-download') && !(document.location.href.match('entities/publication')?.index > -1))){
+            document.querySelector('#vieanhng-download').remove();
+        }
+
+        if(!linkViewDoc){
             document.querySelector('#vieanhng-download').remove();
         }
 
