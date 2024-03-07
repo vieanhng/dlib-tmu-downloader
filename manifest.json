@@ -1,0 +1,30 @@
+{
+  "name": "TMU DLIB DOWNLOADER",
+  "description": "1 click download dlib.tmu.edu.vn",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_title": "TMU DLIB DOWNLOADER",
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "run_at" : "document_idle",
+      "js": ["after.js"],
+      "matches": [
+        "https://*/*",
+        "http://*/*"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://dlib.tmu.edu.vn/*"
+  ]
+}
