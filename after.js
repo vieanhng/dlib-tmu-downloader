@@ -12,9 +12,9 @@
     let linkViewDoc
 
     document.body.addEventListener('mousemove',function () {
+        linkViewDoc = document.querySelector('.link-view-doc')?.getAttribute('href');
         if(!Boolean(document.querySelector('#vieanhng-download')) && Boolean(document.querySelector('.link-view-doc'))){
             document.body.appendChild(button);
-            linkViewDoc = document.querySelector('.link-view-doc').getAttribute('href');
         }
 
         if(!linkViewDoc && !Boolean(document.querySelector('.link-view-doc')) && Boolean(document.querySelector('#vieanhng-download'))){
