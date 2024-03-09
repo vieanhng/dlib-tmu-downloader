@@ -1,11 +1,16 @@
 {
   "name": "TMU DLIB DOWNLOADER",
-  "description": "1 click download dlib.tmu.edu.vn",
+  "description": "1 click download dlib.tmu.edu.vn Copyright (C) 2023 vieanhng.",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
     "default_title": "TMU DLIB DOWNLOADER",
     "default_popup": "popup/popup.html"
+  },
+  "icons": {
+    "16": "logo/icon.png",
+    "48": "logo/icon.png",
+    "128": "logo/icon.png"
   },
   "content_scripts": [
     {
