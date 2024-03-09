@@ -12,16 +12,12 @@
     let linkViewDoc
 
     document.body.addEventListener('mousemove',function () {
-        if(!Boolean(document.querySelector('#vieanhng-download')) && document.location.href.match('entities/publication')?.index > -1){
+        if(!Boolean(document.querySelector('#vieanhng-download')) && Boolean(document.querySelector('.link-view-doc'))){
             document.body.appendChild(button);
-            linkViewDoc = document.querySelector('.link-view-doc')?.getAttribute('href');
+            linkViewDoc = document.querySelector('.link-view-doc').getAttribute('href');
         }
 
-        if(Boolean(document.querySelector('#vieanhng-download') && !(document.location.href.match('entities/publication')?.index > -1))){
-            document.querySelector('#vieanhng-download').remove();
-        }
-
-        if(!linkViewDoc){
+        if(!linkViewDoc && !Boolean(document.querySelector('.link-view-doc')) && Boolean(document.querySelector('#vieanhng-download'))){
             document.querySelector('#vieanhng-download').remove();
         }
 
@@ -30,10 +26,11 @@
 
         button.addEventListener('click', async function() {
             button.disabled = true;
-            var myHeaders = new Headers();
+            button.textContent = "Downloading..."
+            const myHeaders = new Headers();
             myHeaders.append("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7");
 
-            var requestOptions = {
+            const requestOptions = {
                 method: 'GET',
                 headers: myHeaders,
                 redirect: 'follow'
@@ -44,10 +41,11 @@
             }
 
 
-            let docFolderValue = await fetch(`https://dlib.tmu.edu.vn/server/api/core${linkViewDoc}`, requestOptions)
+            const docFolderValue = await fetch(`https://dlib.tmu.edu.vn/server/api/core${linkViewDoc}`, requestOptions)
                 .then(response => response.text())
                 .then((result)=>{
                     button.disabled = false;
+                    button.textContent = "Download"
                     const regex = /'doc'\s*:\s*'([^']+)',\s*'subfolder'\s*:\s*'([^']+)'/;
                     const match = result.match(regex);
 
